@@ -1,0 +1,6 @@
+production:
+  sessions:
+    default:
+      database: kptchan
+      hosts:
+        - localhost:27017
