@@ -11,6 +11,7 @@ require "pry"
 REQUEST_DICTIONARIES = [
   [:add, ['add', 'Add', 'ADD', '足す', '足し', '加え']],
   [:remove, ['remove', 'Remove', 'REMOVE', '消']],
+  [:done, ['done', 'Done', 'complete', 'ダン', '終わ']],
   [:list, ['list', 'List', 'LIST', 'リスト', '一覧']]
 ]
 
@@ -19,7 +20,6 @@ CATEGORY_DICTIONARIES = [
   [:problem, ['problem', 'Problem']],
   [:try, ['try', 'Try']]
 ]
-
 
 
 Mongoid.load!("config/mongoid.yaml", :production)
@@ -48,7 +48,14 @@ end
 class Interpreter
   def interpret(parsed_sentence, speaker_nickname)
     @sentence = parsed_sentence
-    {speaker_nickname: speaker_nickname, request: request, category: category, content: content}
+
+    {
+      speaker_nickname: speaker_nickname,
+      request: request,
+      category: category,
+      content: content,
+      specified_inc_id: specified_inc_id
+    }
   end
 
   private
@@ -76,10 +83,15 @@ class Interpreter
     @sentence =~ /(?<=\").{1,}(?=\")/
     $&
   end
+
+  def specified_inc_id
+    @sentence =~ /(?<=id\:)\d{1,}/
+    $&.to_i
+  end
 end
 
 
-class KPTChan
+class KPTChanController
   def initialize
     @config = YAML.load_file "config/config.yaml"
     @interpreter = Interpreter.new
@@ -111,30 +123,28 @@ class KPTChan
 
   def react_to(interpreted_message)
     msg = interpreted_message
-
+    p msg
     # TODO: 条件はこれでいいのか？
     return until msg[:request] && msg[:category]
 
-    # Behavior.send msg[:request].to_sym,
-    #               @client
-    #               msg[:speaker_nickname], msg[:category], msg[:content]
     options = {
       category: msg[:category],
       content: msg[:content],
-      specified_id: msg[:specified_id]
+      specified_inc_id: msg[:specified_inc_id]
     }
 
     Behavior.send msg[:request].to_sym,
                   @client, msg[:speaker_nickname], options
   end
-
 end
 
 
 module Behavior
   def self.add(client, speaker_nickname, options)
+    return until options[:content].present?
+
     category = options[:category].presence || ''
-    content = options[:content].presence || ''
+    # content = options[:content].presence || ''
     inc_id = get_max_inc_id(category) + 1
 
     task = Task.new(
@@ -150,20 +160,28 @@ module Behavior
     task.save
   end
 
-  def self.complete(client, speaker_nickname, options)
-    Task.where(inc_id: options[:inc_id]).update(done: true)
+  def self.done(client, speaker_nickname, options)
+    Task.where(inc_id: options[:specified_inc_id]).update(done: true)
+    client.notice "#{client.channel}", "#{options[:specified_inc_id]}を完了しました。"
   end
 
-  def self.disable(client, speaker_nickname, options)
-    Task.where(inc_id: options[:inc_id]).update(available: false)
+  def self.remove(client, speaker_nickname, options)
+    Task.where(inc_id: options[:specified_inc_id]).update(available: false)
+    client.notice "#{client.channel}", "#{options[:specified_inc_id]}を削除しました。"
   end
 
   def self.list(client, speaker_nickname, options)
     list = Task.where(category: options[:category], done: false, available: true)
 
-    client.privmsg "#{options[:category]}"
+    if list.length == 0
+      client.notice "#{client.channel}", "登録がありません。"
+      return
+    end
+
+    client.notice "#{client.channel}", "#{options[:category]}"
     list.each do |elem|
-      client.privmsg "#{elem.inc_id}: #{elem.content}"
+      # TODO: spaceや:が途中に入ると上手く出力できない。必要であればzirconのコードを修正。
+      client.notice "#{client.channel}", "#{elem.inc_id}.#{elem.content}(#{elem.created_at.strftime('%Y-%m-%d_%H:%M')})"
     end
   end
 
@@ -174,5 +192,5 @@ module Behavior
 end
 
 
-kpt = KPTChan.new
+kpt = KPTChanController.new
 kpt.run
