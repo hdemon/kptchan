@@ -3,10 +3,11 @@ require "active_support/all"
 
 module Behavior
   def self.add(client, speaker_nickname, options)
-    return until options[:content].present
-    category = options[:category].presence || ''
-    # content = options[:content].presence || ''
+    content = options[:content].presence
+    category = options[:category].presence
     inc_id = get_max_inc_id(category) + 1
+
+    return until content && category
 
     task = Task.new(
       inc_id: inc_id,
