@@ -1,7 +1,6 @@
 require "active_support/all"
 require "zircon"
 
-
 require "./lib/kptchan/kptchan_controller"
 require "./lib/kptchan/behavior"
 require "./lib/kptchan/interpreter"
