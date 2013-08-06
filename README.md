@@ -1,6 +1,8 @@
 # Kptchan
 
-KPTちゃんはKPTを管理するbotです。KPTちゃんは簡単な言葉を解釈し、人間のぬくもりを感じさせるKPT生活を実現します。
+KPTちゃんはKPTを管理するIRC botです。
+
+KPTちゃんは簡単な言葉を解釈し、人間のぬくもりを感じさせるKPT生活を実現します。
 
 ## Installation
 
