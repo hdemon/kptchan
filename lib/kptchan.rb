@@ -15,9 +15,9 @@ REQUEST_DICTIONARIES = [
 ]
 
 CATEGORY_DICTIONARIES = [
-  [:keep, ['keep', 'Keep']],
-  [:problem, ['problem', 'Problem']],
-  [:try, ['try', 'Try']]
+  [:keep, ['keep', 'Keep', 'KEEP', 'キープ']],
+  [:problem, ['problem', 'Problem', 'プロブレム', '課題']],
+  [:try, ['try', 'Try', 'TRY', 'トライ']]
 ]
 
 
