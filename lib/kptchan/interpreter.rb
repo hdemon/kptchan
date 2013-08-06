@@ -27,7 +27,7 @@ class Interpreter
   def retrieve_word(dictionary, sentence)
     dic = dictionary.find do |element|
       element[1].any? do |request_word|
-        sentence =~ /#{request_word}/
+        sentence.force_encoding("UTF-8") =~ /#{request_word}/
       end
     end
 
