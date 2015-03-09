@@ -49,7 +49,7 @@ hdemon: KPT-chan: Problemに"遅刻が多い"を足してくれる？
 
 ```
 hdemon: kpt-chan: Tryのリストを見せて
-kpt-chan: try(1)  プロジェクト概要をgistに書く (13-07-19 16:13 hdemon)
+kpt-chan: try(1)  遅刻が多い (13-07-19 16:13 hdemon)
 ```
 
 というように、「見せてほしい」ことを伝えて下さい。
