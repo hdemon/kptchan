@@ -19,17 +19,17 @@ KPTちゃんはKPTを管理するIRC botです。
 ### KPTを記録する
 
 KPTちゃんは日本語がほんの少し分かります。
-例えば、"プロジェクト概要をgistに書く"というTryを記録させたいなら、
+例えば、"遅刻が多い"というProblemを記録させたいなら、
 
 ```
-hdemon: kpt-chan: "プロジェクト概要をgistに書く"をTryに追加して。
+hdemon: kpt-chan: "遅刻が多い"をProblemに追加して。
 ```
 
 となどと話しかけましょう。
 あるいはもっとくだけた感じで、
 
 ```
-hdemon: KPT-chan: Tryに"プロジェクト概要をgistに書く"を足してくれる？
+hdemon: KPT-chan: Problemに"遅刻が多い"を足してくれる？
 ```
 
 のように話しかけてもOKです。
