@@ -6,22 +6,15 @@ KPTちゃんはKPTを管理するIRC botです。
 
 ## Installation
 
-1: bundle installする。
+1. bundle install
 
     $ bundle
 
-2: config/config.yamlの必要項目を埋める。
+2. config/config.yamlの必要項目を埋める。
 
-    server: "127.0.0.1"
-    port: "6667"
-    password: ""
-    channel: "#test"
-    username: "zircon"
-    ssl: false
+3. 起動
 
-3: 起動
-
-    bundle exec ruby lib/kptchan.rb
+    ruby lib/kptchan.rb
 
 ## Usage
 
