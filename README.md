@@ -40,7 +40,7 @@ hdemon: KPT-chan: Tryに"プロジェクト概要をgistに書く"を足して�
 2. カテゴリー名（Keep/Problem/Try等）の文字列をメッセージに入れること。
 3. 「追加する」などの記録を命令する文字列をメッセージに入れること。
 
-どんな言葉が使えるかは、https://github.com/hdemon/anata-no-imouto-kpt-chan/blob/master/lib/category_word_map.coffee や https://github.com/hdemon/anata-no-imouto-kpt-chan/blob/master/lib/query_word_map.coffee を見てください。
+どんな言葉が使えるかは、[ここ](https://github.com/hdemon/anata-no-imouto-kpt-chan/blob/master/lib/category_word_map.coffee)や[ここ](https://github.com/hdemon/anata-no-imouto-kpt-chan/blob/master/lib/query_word_map.coffee)を見てください。
 このルールは、以下のリスト閲覧と削除においても同様です。
 
 ### KPTのリストを見る。
