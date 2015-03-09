@@ -16,7 +16,7 @@ KPTちゃんはKPTを管理するIRC botです。
     
 ## Usage
 
-### KPTを記録する。
+### KPTを記録する
 
 KPTちゃんは日本語がほんの少し分かります。
 例えば、"プロジェクト概要をgistに書く"というTryを記録させたいなら、
@@ -43,7 +43,7 @@ hdemon: KPT-chan: Tryに"プロジェクト概要をgistに書く"を足して�
 どんな言葉が使えるかは、[ここ](https://github.com/hdemon/anata-no-imouto-kpt-chan/blob/master/lib/category_word_map.coffee)や[ここ](https://github.com/hdemon/anata-no-imouto-kpt-chan/blob/master/lib/query_word_map.coffee)を見てください。
 このルールは、以下のリスト閲覧と削除においても同様です。
 
-### KPTのリストを見る。
+### KPTのリストを見る
 
 今までに追加したKPTのリストを見たい場合は、
 
@@ -56,7 +56,7 @@ kpt-chan: try(1)  プロジェクト概要をgistに書く (13-07-19 16:13 hdemo
 この場合も記録と同じく、ある程度の表現のゆらぎを許容します。
 なお、"try(1)"の括弧内の数字はKPT文言のidです。これは次に説明する削除の際に使います。
 
-### KPTを削除する。
+### KPTを削除する
 
 ```
 hdemon: KPT-chan: Tryのid:1を削除して。
