@@ -6,16 +6,14 @@ KPTちゃんはKPTを管理するIRC botです。
 
 ## Installation
 
-1. bundle install
+1. `config/config.yaml`の必要項目を埋める。
 
-    $ bundle
+2. 起動
 
-2. config/config.yamlの必要項目を埋める。
-
-3. 起動
-
-    ruby lib/kptchan.rb
-
+    ```
+    bin/kptchan
+    ```
+    
 ## Usage
 
 ### KPTを記録する。
